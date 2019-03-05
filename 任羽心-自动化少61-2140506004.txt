@@ -1,0 +1,133 @@
+1-2
+
+>> clear all
+>> pic = imread('lena.bmp');
+>> 
+>> figure(1)
+>> imshow(pic)
+>> title('init');
+>> 
+>> [x,y]=size(pic);
+>> pic7=zeros(x,y);
+>> pic6=zeros(x,y);
+>> pic5=zeros(x,y);
+>> pic4=zeros(x,y);
+>> pic3=zeros(x,y);
+>> pic2=zeros(x,y);
+>> pic1=zeros(x,y);
+>> 
+>> for i = 1:x
+       for j = 1:y
+           pic7(i,j)=floor(pic(i,j)/2);
+           pic6(i,j)=floor(pic(i,j)/4);
+           pic5(i,j)=floor(pic(i,j)/8);
+           pic4(i,j)=floor(pic(i,j)/16);
+           pic3(i,j)=floor(pic(i,j)/32);
+           pic2(i,j)=floor(pic(i,j)/64);
+           pic1(i,j)=floor(pic(i,j)/128);
+       end
+   end
+>> 
+>> figure(2)
+>> imshow((pic7),[0,127])
+>> 
+>> figure(3)
+>> imshow((pic6),[0,63])
+>> 
+>> figure(4)
+>> imshow((pic5),[0,31])
+>> 
+>> figure(5)
+>> imshow((pic4),[0,15])
+>> 
+>> figure(6)
+>> imshow((pic3),[0,7])
+>> 
+>> figure(7)
+>> imshow((pic2),[0,3])
+>> 
+>> figure(8)
+>> imshow((pic1),[0,1])
+>> 
+
+1-3
+
+>> pic = imread('lena.bmp');
+>> aver = mean2(pic)
+
+aver =
+
+   99.0512
+
+>> vira = std2(pic)
+
+vira =
+
+   52.8775
+
+>> 
+
+1-4
+
+>> pic = imread('lena.bmp');
+>> near = imresize(pic,4,'nearest');
+>> bili = imresize(pic,4,'bilinear');
+>> bicu = imresize(pic,4,'bicubic');
+>> 
+>> figure(1)
+>> imshow(pic);
+>> 
+>> figure(2)
+>> imshow(near);
+>> 
+>> figure(3)
+>> imshow(bili);
+>> 
+>> figure(4)
+>> imshow(bicu);
+>> 
+
+1-5
+
+>> clear;
+>> %lena
+>> pic1 = imread('lena.bmp');
+>> tran_sh = [1 1.5 0; 0 1 0; 0 0 1];
+>> tran1 = maketform('affine',tran_sh);
+>> solu1 = imtransform(pic1,tran1);
+>> 
+>> tran_ro = [cos(30) sin(30) 0; -sin(30) cos(30) 0; 0 0 1];
+>> tran2 = maketform('affine',tran_ro);
+>> solu2 = imtransform(solu1,tran2);
+>> 
+>> near1 = imresize(solu2,[2048,2048],'nearest');
+>> figure(1)
+>> imshow(near1);
+>>
+>> bili1 = imresize(solu2,[2048,2048],'bilinear');
+>> figure(2)
+>> imshow(bili1);
+>>
+>> bicu1 = imresize(solu2,[2048,2048],'bicubic');
+>> figure(3)
+>> imshow(bicu1);
+>> 
+>> %elain
+>> pic1 = imread('elain.bmp');
+>> pic2 = imread('elain.bmp');
+>> tran3 = maketform('affine',tran_sh);
+>> solu3 = imtransform(pic2,tran3);
+>> tran4 = maketform('affine',tran_ro);
+>> solu4 = imtransform(solu3,tran4);
+>>
+>> near2 = imresize(solu4,[2048,2048],'nearest');
+>> figure(4)
+>> imshow(near2);
+>>
+>> bili2 = imresize(solu4,[2048,2048],'bilinear');
+>> figure(5)
+>> imshow(bili2);
+>>
+>> bicu2 = imresize(solu4,[2048,2048],'bicubic');
+>> figure(6)
+>> imshow(bicu2);
